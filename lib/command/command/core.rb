@@ -8,6 +8,8 @@ module Command
       included do
         delegate :flow_class, to: :class
         delegate :pending?, :triggered?, :success?, :failed?, :state, :output, to: :flow, prefix: true
+        delegate :failed_operation, to: :flow
+        delegate :operation_failure, to: :failed_operation, allow_nil: true
 
         private
 
