@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 RSpec.describe Command::FieldError, type: :field_error do
+  subject { described_class }
+
   let(:instance) { described_class.new(**input_hash) }
   let(:input_hash) do
     { field_name: field_name, error_code: error_code, message: message }
