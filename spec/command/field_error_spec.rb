@@ -9,6 +9,12 @@ RSpec.describe Command::FieldError, type: :field_error do
   let(:error_code) { Faker::Lorem.word }
   let(:message) { Faker::Lorem.sentence }
 
+  it { is_expected.to inherit_from Spicerack::InputObject }
+
+  it { is_expected.to define_argument :field_name }
+  it { is_expected.to define_argument :error_code }
+  it { is_expected.to define_argument :message }
+
   describe ".collection_from_json" do
     subject { described_class.collection_from_json field_error_hashes }
 
