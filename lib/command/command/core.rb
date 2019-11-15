@@ -7,7 +7,7 @@ module Command
 
       included do
         delegate :flow_class, to: :class
-        delegate :pending?, :triggered?, :success?, :failed?, :state, to: :flow, prefix: true
+        delegate :pending?, :triggered?, :success?, :failed?, :state, :output, to: :flow, prefix: true
 
         private
 
