@@ -8,4 +8,5 @@ RSpec.describe Command::CommandBase, type: :command do
   it { is_expected.to include_module Conjunction::Conjunctive }
 
   it { is_expected.to include_module Command::Command::Core }
+  it { is_expected.to include_module Command::Command::Success }
 end
