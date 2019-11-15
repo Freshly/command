@@ -3,6 +3,9 @@
 A behavioral approach for building extensible business objects in Rails applications
 
 [![Gem Version](https://badge.fury.io/rb/command.svg)](https://badge.fury.io/rb/command)
+[![Build Status](https://semaphoreci.com/api/v1/projects/0f108338-9688-4292-a358-ea7d4418747b/3017780/badge.svg)](https://semaphoreci.com/freshly/command)
+[![Maintainability](https://api.codeclimate.com/v1/badges/67c636f92aa81595fb6c/maintainability)](https://codeclimate.com/github/Freshly/command/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/67c636f92aa81595fb6c/test_coverage)](https://codeclimate.com/github/Freshly/command/test_coverage)
 
 * [Installation](#installation)
 * [Usage](#usage)
