@@ -12,6 +12,9 @@ RSpec.describe Command::Command::Core, type: :concern do
   it { is_expected.to delegate_method(:state).to(:flow).with_prefix }
   it { is_expected.to delegate_method(:output).to(:flow).with_prefix }
 
+  it { is_expected.to delegate_method(:failed_operation).to(:flow) }
+  it { is_expected.to delegate_method(:operation_failure).to(:failed_operation).allow_nil }
+
   describe ".flow_class" do
     subject { example_command_class.flow_class }
 
