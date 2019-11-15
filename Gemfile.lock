@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/freshly/flow.git
-  revision: 3446dedc5e75eb47bab6238bd9a4b7e41724ab86
+  revision: 22ae4f588c2788b601635cd6517697aa171f0654
   ref: use-conjunction-junction
   specs:
     flow (0.10.3)
@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/freshly/spicerack.git
-  revision: fac7c114a7bfc62c2cc0f0675311ef253240f045
+  revision: b0e57978f41ccb39bc3aee213160c58af59a55c2
   ref: conjunction/no-prototype-intermediary
   specs:
     around_the_world (0.18.0)
