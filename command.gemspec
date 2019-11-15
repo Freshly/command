@@ -5,8 +5,8 @@ require "command/version"
 Gem::Specification.new do |spec|
   spec.name          = "command"
   spec.version       = Command::VERSION
-  spec.authors       = [ "Eric Garside" ]
-  spec.email         = %w[garside@gmail.com]
+  spec.authors       = [ "Eric Garside", "Allen Rettberg", "Jordan Minneti" ]
+  spec.email         = %w[garside@gmail.com allen.rettberg@freshly.com jordan.minneti@freshly.com]
 
   spec.summary       = "Define what your application does with service objects that adapt to your architecture"
   spec.description   = "A behavioral approach for building extensible business objects in Rails applications"
