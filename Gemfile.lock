@@ -1,7 +1,18 @@
 GIT
+  remote: https://github.com/freshly/flow.git
+  revision: 3446dedc5e75eb47bab6238bd9a4b7e41724ab86
+  ref: use-conjunction-junction
+  specs:
+    flow (0.10.3)
+      activemodel (>= 5.2.1)
+      activerecord (>= 5.2.1)
+      activesupport (>= 5.2.1)
+      spicerack (>= 0.13.3, < 1.0)
+
+GIT
   remote: https://github.com/freshly/spicerack.git
-  revision: 755c455138d62911f546cbf1774c17ea009fbfd4
-  ref: conjunction/finish_junction
+  revision: fac7c114a7bfc62c2cc0f0675311ef253240f045
+  ref: conjunction/no-prototype-intermediary
   specs:
     around_the_world (0.18.0)
       activesupport (>= 5.2.1)
@@ -10,6 +21,7 @@ GIT
       short_circu_it (= 0.18.0)
       tablesalt (= 0.18.0)
     conjunction (0.18.0)
+      activemodel (>= 5.2.1)
       activesupport (>= 5.2.1)
     facet (0.18.0)
       activesupport (>= 5.2.1)
@@ -52,6 +64,7 @@ PATH
   specs:
     command (0.1.0)
       activesupport (~> 5.2.1)
+      flow (>= 0.10.3, < 1.0)
       spicerack (>= 0.18.0, < 1.0)
 
 GEM
@@ -72,11 +85,16 @@ GEM
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
     activemodel (5.2.3)
       activesupport (= 5.2.3)
+    activerecord (5.2.3)
+      activemodel (= 5.2.3)
+      activesupport (= 5.2.3)
+      arel (>= 9.0)
     activesupport (5.2.3)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    arel (9.0.0)
     ast (2.4.0)
     builder (3.2.3)
     byebug (11.0.1)
@@ -175,6 +193,7 @@ DEPENDENCIES
   bundler (~> 2.0.1)
   command!
   faker (~> 1.8)
+  flow!
   pry-byebug (>= 3.7.0)
   rake (~> 10.0)
   rspec (~> 3.0)

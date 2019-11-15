@@ -4,6 +4,8 @@ require "active_support"
 
 require "spicerack"
 
+require "flow"
+
 require "command/version"
 
 require "command/field_error"

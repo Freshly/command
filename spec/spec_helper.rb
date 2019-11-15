@@ -5,9 +5,10 @@ require "pry"
 require "simplecov"
 
 require "timecop"
+require "shoulda-matchers"
 
 require "spicerack/spec_helper"
-require "shoulda-matchers"
+require "flow/spec_helper"
 
 SimpleCov.start do
   add_filter "/spec/"
@@ -17,6 +18,7 @@ end
 require "command"
 
 require_relative "support/shared_context/with_an_example_command"
+require_relative "support/shared_context/with_an_example_command_having_flow"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
