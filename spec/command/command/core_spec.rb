@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Command::Command::Core, type: :command do
+RSpec.describe Command::Command::Core, type: :concern do
   include_context "with an example command having flow"
 
   it { is_expected.to delegate_method(:flow_class).to(:class) }
@@ -10,6 +10,7 @@ RSpec.describe Command::Command::Core, type: :command do
   it { is_expected.to delegate_method(:success?).to(:flow).with_prefix }
   it { is_expected.to delegate_method(:failed?).to(:flow).with_prefix }
   it { is_expected.to delegate_method(:state).to(:flow).with_prefix }
+  it { is_expected.to delegate_method(:output).to(:flow).with_prefix }
 
   describe ".flow_class" do
     subject { example_command_class.flow_class }
