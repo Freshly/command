@@ -3,7 +3,7 @@ PATH
   specs:
     command (0.1.0)
       activesupport (~> 5.2.1)
-      spicerack (>= 0.16.2, < 1.0)
+      spicerack (>= 0.18.0, < 1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -172,10 +172,10 @@ DEPENDENCIES
   pry-byebug (>= 3.7.0)
   rake (~> 10.0)
   rspec (~> 3.0)
-  rspice (>= 0.16.2, < 1.0)
+  rspice (>= 0.18.0, < 1.0)
   shoulda-matchers (= 4.0.1)
   simplecov (~> 0.16)
-  spicerack-styleguide (>= 0.16.2, < 1.0)
+  spicerack-styleguide (>= 0.18.0, < 1.0)
   timecop (>= 0.9.1)
 
 BUNDLED WITH

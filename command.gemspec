@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = "lib"
 
   spec.add_runtime_dependency "activesupport", "~> 5.2.1"
-  spec.add_runtime_dependency "spicerack", ">= 0.16.2", "< 1.0"
+  spec.add_runtime_dependency "spicerack", ">= 0.18.0", "< 1.0"
 
   spec.add_development_dependency "bundler", "~> 2.0.1"
   spec.add_development_dependency "faker", "~> 1.8"
@@ -27,7 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "simplecov", "~> 0.16"
   spec.add_development_dependency "timecop", ">= 0.9.1"
 
-  spec.add_development_dependency "rspice", ">= 0.16.2", "< 1.0"
-  spec.add_development_dependency "spicerack-styleguide", ">= 0.16.2", "< 1.0"
+  spec.add_development_dependency "rspice", ">= 0.18.0", "< 1.0"
+  spec.add_development_dependency "spicerack-styleguide", ">= 0.18.0", "< 1.0"
   spec.add_development_dependency "shoulda-matchers", "4.0.1"
 end
