@@ -1,6 +1,6 @@
 # Command
 
-..summary..
+A behavioral approach for building extensible business objects in Rails applications
 
 [![Gem Version](https://badge.fury.io/rb/command.svg)](https://badge.fury.io/rb/command)
 

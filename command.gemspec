@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors       = [ "Eric Garside" ]
   spec.email         = %w[garside@gmail.com]
 
-  spec.summary       = ""
-  spec.description   = ""
+  spec.summary       = "Define what your application does with service objects that adapt to your architecture"
+  spec.description   = "A behavioral approach for building extensible business objects in Rails applications"
   spec.homepage      = "https://github.com/Freshly/command"
   spec.license       = "MIT"
 
