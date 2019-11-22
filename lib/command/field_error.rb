@@ -4,12 +4,10 @@ module Command
   class FieldError < Spicerack::InputObject
     argument :field_name
     argument :error_code
-    argument :message
 
-    class << self
-      def collection_from_json(field_error_hashes)
-        field_error_hashes.map { |field_error_hash| new(**field_error_hash.symbolize_keys) }
-      end
+    def ==(other)
+      super || other.try(:field_name) == field_name && other.try(:error_code) == error_code
     end
+    alias_method :eql?, :==
   end
 end
