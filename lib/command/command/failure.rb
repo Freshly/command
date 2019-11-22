@@ -7,12 +7,17 @@ module Command
 
       included do
         define_callbacks_with_handler :failure
+        attr_reader :malfunction
+      end
+
+      def malfunction?
+        malfunction.present?
       end
 
       private
 
       def handle_failure
-        run_callbacks(:failure)
+        run_callbacks(:failure) { @malfunction = Malfunction.new(self) }
       end
     end
   end
