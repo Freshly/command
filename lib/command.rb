@@ -8,6 +8,8 @@ require "flow"
 
 require "command/version"
 
+require "command/malfunction"
+
 require "command/field_error"
 require "command/command_base"
 
