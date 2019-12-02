@@ -14,7 +14,7 @@ module Command
       def execute
         flow.trigger
 
-        (flow_success? ? handle_success : handle_failure).presence || flow_success?
+        (malfunction? ? handle_failure : handle_success).presence || !malfunction?
       end
     end
   end

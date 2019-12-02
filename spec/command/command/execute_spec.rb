@@ -29,7 +29,7 @@ RSpec.describe Command::Command::Execute, type: :concern do
 
     before do
       allow(flow).to receive(:trigger)
-      allow(flow).to receive(:success?).and_return(flow_success?)
+      allow(example_command).to receive(:malfunction?).and_return(malfunction?)
       allow(example_command).to receive(expected_handler).and_call_original
     end
 
@@ -41,8 +41,8 @@ RSpec.describe Command::Command::Execute, type: :concern do
       end
     end
 
-    context "with flow_success?" do
-      let(:flow_success?) { true }
+    context "without malfunction?" do
+      let(:malfunction?) { false }
       let(:expected_handler) { :handle_success }
 
       it_behaves_like "the expected handler is called"
@@ -64,8 +64,8 @@ RSpec.describe Command::Command::Execute, type: :concern do
       end
     end
 
-    context "without flow_success?" do
-      let(:flow_success?) { false }
+    context "with malfunction?" do
+      let(:malfunction?) { true }
       let(:expected_handler) { :handle_failure }
 
       it_behaves_like "the expected handler is called"

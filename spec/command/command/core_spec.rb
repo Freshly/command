@@ -5,15 +5,8 @@ RSpec.describe Command::Command::Core, type: :concern do
 
   it { is_expected.to delegate_method(:flow_class).to(:class) }
 
-  it { is_expected.to delegate_method(:pending?).to(:flow).with_prefix }
-  it { is_expected.to delegate_method(:triggered?).to(:flow).with_prefix }
-  it { is_expected.to delegate_method(:success?).to(:flow).with_prefix }
-  it { is_expected.to delegate_method(:failed?).to(:flow).with_prefix }
-  it { is_expected.to delegate_method(:state).to(:flow).with_prefix }
-  it { is_expected.to delegate_method(:output).to(:flow).with_prefix }
-
-  it { is_expected.to delegate_method(:failed_operation).to(:flow) }
-  it { is_expected.to delegate_method(:operation_failure).to(:failed_operation).allow_nil }
+  it { is_expected.to delegate_method(:malfunction).to(:flow) }
+  it { is_expected.to delegate_method(:malfunction?).to(:flow) }
 
   describe ".flow_class" do
     subject { example_command_class.flow_class }
