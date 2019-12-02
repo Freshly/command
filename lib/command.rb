@@ -2,7 +2,7 @@
 
 require "active_support"
 
-require "spicerack"
+require "spicery"
 
 require "flow"
 

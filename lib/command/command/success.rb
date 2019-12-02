@@ -12,7 +12,7 @@ module Command
       private
 
       def handle_success
-        run_callbacks(:success)
+        run_callbacks(:success) { try(:success_response) }
       end
     end
   end
