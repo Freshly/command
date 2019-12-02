@@ -12,7 +12,7 @@ module Command
       private
 
       def handle_failure
-        run_callbacks(:failure)
+        run_callbacks(:failure) { try(:failure_response) }
       end
     end
   end

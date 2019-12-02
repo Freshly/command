@@ -30,7 +30,7 @@ RSpec.describe Command::Command::Execute, type: :concern do
     before do
       allow(flow).to receive(:trigger)
       allow(flow).to receive(:success?).and_return(flow_success?)
-      allow(example_command).to receive(expected_handler)
+      allow(example_command).to receive(expected_handler).and_call_original
     end
 
     shared_examples_for "the expected handler is called" do
@@ -46,6 +46,22 @@ RSpec.describe Command::Command::Execute, type: :concern do
       let(:expected_handler) { :handle_success }
 
       it_behaves_like "the expected handler is called"
+
+      context "without #success_response" do
+        it { is_expected.to eq true }
+      end
+
+      context "with #success_response" do
+        let(:example_command_class) do
+          Class.new(Command::CommandBase) do
+            def success_response
+              :some_success_response
+            end
+          end
+        end
+
+        it { is_expected.to eq :some_success_response }
+      end
     end
 
     context "without flow_success?" do
@@ -53,6 +69,22 @@ RSpec.describe Command::Command::Execute, type: :concern do
       let(:expected_handler) { :handle_failure }
 
       it_behaves_like "the expected handler is called"
+
+      context "without #failure_response" do
+        it { is_expected.to eq false }
+      end
+
+      context "with #failure_response" do
+        let(:example_command_class) do
+          Class.new(Command::CommandBase) do
+            def failure_response
+              :some_failure_response
+            end
+          end
+        end
+
+        it { is_expected.to eq :some_failure_response }
+      end
     end
   end
 end

@@ -14,5 +14,21 @@ RSpec.describe Command::Command::Failure, type: :concern do
       let(:callback) { :failure }
       let(:method) { :on_failure }
     end
+
+    context "without #failure_response" do
+      it { is_expected.to be_nil }
+    end
+
+    context "with #failure_response" do
+      let(:example_command_class) do
+        Class.new(Command::CommandBase) do
+          def failure_response
+            :some_failure_response
+          end
+        end
+      end
+
+      it { is_expected.to eq :some_failure_response }
+    end
   end
 end
