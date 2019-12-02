@@ -5,6 +5,10 @@ module Command
     module Execute
       extend ActiveSupport::Concern
 
+      included do
+        define_callbacks_with_handler :execute
+      end
+
       class_methods do
         def execute(input = {})
           new(input).tap(&:execute)
@@ -12,9 +16,11 @@ module Command
       end
 
       def execute
-        flow.trigger
+        run_callbacks(:execute) do
+          flow.trigger
 
-        (malfunction? ? handle_failure : handle_success).presence || !malfunction?
+          (malfunction? ? handle_failure : handle_success).presence || !malfunction?
+        end
       end
     end
   end

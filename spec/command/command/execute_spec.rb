@@ -30,15 +30,26 @@ RSpec.describe Command::Command::Execute, type: :concern do
     before do
       allow(flow).to receive(:trigger)
       allow(example_command).to receive(:malfunction?).and_return(malfunction?)
-      allow(example_command).to receive(expected_handler).and_call_original
     end
 
     shared_examples_for "the expected handler is called" do
+      before { allow(example_command).to receive(expected_handler).and_call_original }
+
       it "triggers and handles" do
         execute
         expect(flow).to have_received(:trigger)
         expect(example_command).to have_received(expected_handler)
       end
+    end
+
+    it_behaves_like "a handler for the callback" do
+      subject(:run) { instance.__send__(:execute) }
+
+      let(:malfunction?) { false }
+      let(:example_class) { Command::CommandBase }
+      let(:example_command_class) { test_class }
+      let(:callback) { :execute }
+      let(:method) { :on_execute }
     end
 
     context "without malfunction?" do
