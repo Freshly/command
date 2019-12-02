@@ -6,20 +6,13 @@ module Command
       extend ActiveSupport::Concern
 
       included do
-        define_callbacks_with_handler :failure, :malfunction
-        attr_reader :malfunction
-      end
-
-      def malfunction?
-        malfunction.present?
+        define_callbacks_with_handler :failure
       end
 
       private
 
       def handle_failure
-        run_callbacks(:failure) do
-          run_callbacks(:malfunction) { @malfunction = Malfunction.new(self) }
-        end
+        run_callbacks(:failure)
       end
     end
   end

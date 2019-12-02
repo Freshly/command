@@ -14,30 +14,5 @@ RSpec.describe Command::Command::Failure, type: :concern do
       let(:callback) { :failure }
       let(:method) { :on_failure }
     end
-
-    it_behaves_like "a handler for the callback" do
-      subject(:run) { instance.__send__(:handle_failure) }
-
-      let(:example_class) { Command::CommandBase }
-      let(:example_command_class) { test_class }
-      let(:callback) { :malfunction }
-      let(:method) { :on_malfunction }
-    end
-
-    it "sets malfunction" do
-      expect { handle_failure }.to change { example_command.malfunction }.to(an_instance_of(Command::Malfunction))
-    end
-  end
-
-  describe "#malfunction?" do
-    context "with malfunction" do
-      before { example_command.__send__(:handle_failure) }
-
-      it { is_expected.to be_malfunction }
-    end
-
-    context "without malfunction" do
-      it { is_expected.not_to be_malfunction }
-    end
   end
 end
