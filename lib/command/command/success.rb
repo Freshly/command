@@ -11,8 +11,12 @@ module Command
 
       private
 
+      def success_response
+        resolve_as :ok
+      end
+
       def handle_success
-        run_callbacks(:success) { try(:success_response) }
+        run_callbacks(:success) { success_response }
       end
     end
   end

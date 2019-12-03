@@ -11,8 +11,12 @@ module Command
 
       private
 
+      def failure_response
+        resolve_as :unprocessable_entity
+      end
+
       def handle_failure
-        run_callbacks(:failure) { try(:failure_response) }
+        run_callbacks(:failure) { failure_response }
       end
     end
   end

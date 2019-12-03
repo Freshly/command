@@ -10,4 +10,6 @@ RSpec.describe Command::CommandBase, type: :command do
   it { is_expected.to include_module Command::Command::Core }
   it { is_expected.to include_module Command::Command::Success }
   it { is_expected.to include_module Command::Command::Failure }
+  it { is_expected.to include_module Command::Command::Execute }
+  it { is_expected.to include_module Command::Command::Resolution }
 end
