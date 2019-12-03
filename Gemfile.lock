@@ -1,4 +1,16 @@
 GIT
+  remote: https://github.com/freshly/batch_processor.git
+  revision: b600c95ff92a13bfeb6ca32ea2e63df50008c8ad
+  ref: malfunctions
+  specs:
+    batch_processor (0.3.0)
+      activejob (~> 5.2.1)
+      activesupport (~> 5.2.1)
+      malfunction (>= 0.1.0, < 1.0)
+      redis (>= 3.0)
+      spicery (>= 0.19.2, < 1.0)
+
+GIT
   remote: https://github.com/freshly/flow.git
   revision: bc9407c32059b21c756411c51051f81a2f902af0
   ref: malfunction
@@ -77,6 +89,7 @@ PATH
   specs:
     command (0.1.0)
       activesupport (~> 5.2.1)
+      batch_processor (>= 0.3.0, < 1.0)
       flow (>= 0.10.3, < 1.0)
       spicery (>= 0.19.2, < 1.0)
 
@@ -96,6 +109,9 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    activejob (5.2.4)
+      activesupport (= 5.2.4)
+      globalid (>= 0.3.6)
     activemodel (5.2.4)
       activesupport (= 5.2.4)
     activerecord (5.2.4)
@@ -119,6 +135,8 @@ GEM
     erubi (1.9.0)
     faker (1.9.6)
       i18n (>= 0.7)
+    globalid (0.4.2)
+      activesupport (>= 4.2.0)
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
     jaro_winkler (1.5.4)
@@ -203,6 +221,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  batch_processor!
   bundler (~> 2.0.1)
   command!
   faker (~> 1.8)
