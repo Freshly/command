@@ -58,20 +58,54 @@ RSpec.describe Command::Command::Execute, type: :concern do
 
       it_behaves_like "the expected handler is called"
 
-      context "without #success_response" do
-        it { is_expected.to eq true }
-      end
-
-      context "with #success_response" do
+      context "when unresolved" do
         let(:example_command_class) do
           Class.new(Command::CommandBase) do
             def success_response
-              :some_success_response
+              nil
             end
           end
         end
 
-        it { is_expected.to eq :some_success_response }
+        it "raises" do
+          expect { execute }.to raise_error Command::CommandUnresolvedError
+        end
+      end
+
+      context "when resolved" do
+        context "with default" do
+          it { is_expected.to eq :ok }
+
+          it "changes status" do
+            expect { execute }.to change { example_command.status }.to(:ok)
+          end
+        end
+
+        context "with nil #success_response" do
+          let(:example_command_class) do
+            Class.new(Command::CommandBase) do
+              def success_response
+                super
+                nil
+              end
+            end
+          end
+
+          it { is_expected.to eq true }
+        end
+
+        context "with #success_response" do
+          let(:example_command_class) do
+            Class.new(Command::CommandBase) do
+              def success_response
+                super
+                :some_success_response
+              end
+            end
+          end
+
+          it { is_expected.to eq :some_success_response }
+        end
       end
     end
 
@@ -81,20 +115,54 @@ RSpec.describe Command::Command::Execute, type: :concern do
 
       it_behaves_like "the expected handler is called"
 
-      context "without #failure_response" do
-        it { is_expected.to eq false }
-      end
-
-      context "with #failure_response" do
+      context "when unresolved" do
         let(:example_command_class) do
           Class.new(Command::CommandBase) do
             def failure_response
-              :some_failure_response
+              nil
             end
           end
         end
 
-        it { is_expected.to eq :some_failure_response }
+        it "raises" do
+          expect { execute }.to raise_error Command::CommandUnresolvedError
+        end
+      end
+
+      context "when resolved" do
+        context "with default" do
+          it { is_expected.to eq :unprocessable_entity }
+
+          it "changes status" do
+            expect { execute }.to change { example_command.status }.to(:unprocessable_entity)
+          end
+        end
+
+        context "with nil #failure_response" do
+          let(:example_command_class) do
+            Class.new(Command::CommandBase) do
+              def failure_response
+                super
+                nil
+              end
+            end
+          end
+
+          it { is_expected.to eq false }
+        end
+
+        context "with #failure_response" do
+          let(:example_command_class) do
+            Class.new(Command::CommandBase) do
+              def failure_response
+                super
+                :some_failure_response
+              end
+            end
+          end
+
+          it { is_expected.to eq :some_failure_response }
+        end
       end
     end
   end

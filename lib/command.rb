@@ -11,4 +11,8 @@ require "command/version"
 require "command/field_error"
 require "command/command_base"
 
-module Command; end
+module Command
+  class Error < StandardError; end
+
+  class CommandUnresolvedError < Error; end
+end
