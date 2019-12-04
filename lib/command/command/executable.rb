@@ -14,20 +14,9 @@ module Command
       end
 
       class_methods do
-        def executable_class
-          @executable_class || implicit_executable_class
-        end
-
         def inherited(base)
           base._executable_methods = _executable_methods.dup
-          base.executes(@executable_class) if defined?(@executable_class)
           super
-        end
-
-        protected
-
-        def executes(executable_class)
-          @executable_class = executable_class
         end
 
         private
@@ -54,12 +43,6 @@ module Command
       end
 
       private
-
-      def execute!
-        raise UnknownExecutableError if execution_method.blank?
-
-        executable.public_send(execution_method)
-      end
 
       def execution_method
         _executable_methods[executable_base_class] if executable_base_class.present?

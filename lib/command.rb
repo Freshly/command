@@ -17,4 +17,5 @@ module Command
 
   class CommandUnresolvedError < Error; end
   class UnknownExecutableError < Error; end
+  class UnregisteredExecutableError < Error; end
 end

@@ -22,6 +22,34 @@ RSpec.describe Command::Command::Execute, type: :concern do
     end
   end
 
+  describe ".executable_class" do
+    subject { example_command_class.executable_class }
+
+    context "when explicit" do
+      let(:explicit_class) { Class.new(Flow::FlowBase) }
+
+      before { example_command_class.__send__(:executes, explicit_class) }
+
+      it { is_expected.to eq explicit_class }
+    end
+
+    context "when implied" do
+      let(:implicit_class) { Class.new(Flow::FlowBase) }
+
+      before { allow(example_command_class).to receive(:implicit_executable_class).and_return(implicit_class) }
+
+      it { is_expected.to eq implicit_class }
+    end
+  end
+
+  describe ".inherited" do
+    it "needs specs"
+  end
+
+  describe ".executes" do
+    it "needs specs"
+  end
+
   describe "#execute" do
     subject(:execute) { example_command.execute }
 
@@ -165,5 +193,9 @@ RSpec.describe Command::Command::Execute, type: :concern do
         end
       end
     end
+  end
+
+  describe "#execute!" do
+    it "needs specs"
   end
 end

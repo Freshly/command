@@ -15,6 +15,8 @@ RSpec.describe Command::CommandBase, type: :command do
   it { is_expected.to include_module Command::Command::Resolution }
 
   describe "#_executable_methods" do
-    it "needs specs for default executables"
+    subject { described_class._executable_methods }
+
+    it { is_expected.to eq(Flow::FlowBase => :trigger, BatchProcessor::BatchBase => :process) }
   end
 end

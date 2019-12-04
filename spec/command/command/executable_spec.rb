@@ -3,23 +3,22 @@
 RSpec.describe Command::Command::Executable, type: :concern do
   include_context "with an example command having flow"
 
-  describe "#executable_class" do
+  it { is_expected.to delegate_method(:_executable_methods).to(:class) }
+  it { is_expected.to delegate_method(:_executable_classes).to(:class) }
+
+  describe ".inherited" do
     it "needs specs"
   end
 
-  describe "#inherited" do
+  describe "._executable_classes" do
     it "needs specs"
   end
 
-  describe "#executes" do
+  describe ".implicit_executable_class" do
     it "needs specs"
   end
 
-  describe "#register_executable" do
-    it "needs specs"
-  end
-
-  describe "#execute!" do
+  describe ".register_executable" do
     it "needs specs"
   end
 
