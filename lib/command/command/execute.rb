@@ -17,7 +17,7 @@ module Command
 
       def execute
         run_callbacks(:execute) do
-          flow.trigger
+          execute!
 
           (malfunction? ? handle_failure : handle_success).presence || !malfunction?
         end

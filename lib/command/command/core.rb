@@ -6,22 +6,18 @@ module Command
       extend ActiveSupport::Concern
 
       included do
-        delegate :flow_class, to: :class
-        delegate :malfunction, :malfunction?, to: :flow
+        delegate :executable_class, to: :class
+        delegate :malfunction, :malfunction?, to: :executable
 
         private
 
-        attr_reader :flow
-      end
-
-      class_methods do
-        def flow_class
-          conjugate!(Flow::FlowBase)
-        end
+        attr_reader :executable
       end
 
       def initialize(input = {})
-        @flow = flow_class.new(**input.symbolize_keys)
+        raise UnknownExecutableError if executable_class.blank?
+
+        @executable = executable_class.new(**input.symbolize_keys)
       end
     end
   end

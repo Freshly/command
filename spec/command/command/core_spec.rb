@@ -1,39 +1,69 @@
 # frozen_string_literal: true
 
 RSpec.describe Command::Command::Core, type: :concern do
-  include_context "with an example command having flow"
+  include_context "with an example command"
 
-  it { is_expected.to delegate_method(:flow_class).to(:class) }
+  it { is_expected.to delegate_method(:executable_class).to(:class) }
 
-  it { is_expected.to delegate_method(:malfunction).to(:flow) }
-  it { is_expected.to delegate_method(:malfunction?).to(:flow) }
-
-  describe ".flow_class" do
-    subject { example_command_class.flow_class }
-
-    let(:example_flow_class) { Class.new(Flow::FlowBase) }
-    let(:example_flow_name) { "#{example_command_name}Flow" }
-
-    before { stub_const(example_flow_name, example_flow_class) }
-
-    it { is_expected.to eq example_flow_class }
-  end
+  it { is_expected.to delegate_method(:malfunction).to(:executable) }
+  it { is_expected.to delegate_method(:malfunction?).to(:executable) }
 
   describe "#initialize" do
-    let(:input) { Hash["foo", :foo, "bar", :bar] }
+    let(:sample_input) { Hash["foo", :foo, "bar", :bar] }
 
-    before do
-      allow(example_flow_class).to receive(:new).and_call_original
-      example_state_class.__send__(:option, :foo)
-      example_state_class.__send__(:option, :bar)
+    context "with a custom executable" do
+      let(:input) { sample_input }
 
-      example_command
+      before do
+        allow(example_executable_class).to receive(:new).and_call_original
+
+        example_command
+      end
+
+      it "was called with options" do
+        expect(example_executable_class).to have_received(:new).with(**sample_input.symbolize_keys)
+        expect(example_command.__send__(:executable)).to be_an_instance_of example_executable_class
+      end
     end
 
-    it "was called with options" do
-      expect(example_flow_class).to have_received(:new).with(foo: :foo, bar: :bar)
-      expect(example_command.__send__(:flow)).to be_an_instance_of example_flow_class
-      expect(example_command.__send__(:flow).state).to be_an_instance_of example_state_class
+    context "with a flow executable" do
+      include_context "with an example command having flow" do
+        let(:input) { sample_input }
+      end
+
+      before do
+        allow(example_flow_class).to receive(:new).and_call_original
+        example_state_class.__send__(:option, :foo)
+        example_state_class.__send__(:option, :bar)
+
+        example_command
+      end
+
+      it "was called with options" do
+        expect(example_flow_class).to have_received(:new).with(**sample_input.symbolize_keys)
+        expect(example_command.__send__(:executable)).to be_an_instance_of example_flow_class
+        expect(example_command.__send__(:executable).state).to be_an_instance_of example_state_class
+      end
+    end
+
+    context "with a batch executable" do
+      include_context "with an example command having batch" do
+        let(:input) { sample_input }
+      end
+
+      before do
+        allow(example_batch_class).to receive(:new).and_call_original
+        example_batch_collection_class.__send__(:option, :foo)
+        example_batch_collection_class.__send__(:option, :bar)
+
+        example_command
+      end
+
+      it "was called with options" do
+        expect(example_batch_class).to have_received(:new).with(**sample_input.symbolize_keys)
+        expect(example_command.__send__(:executable)).to be_an_instance_of example_batch_class
+        expect(example_command.__send__(:executable).collection).to be_an_instance_of example_batch_collection_class
+      end
     end
   end
 end

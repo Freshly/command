@@ -25,10 +25,8 @@ RSpec.describe Command::Command::Execute, type: :concern do
   describe "#execute" do
     subject(:execute) { example_command.execute }
 
-    let(:flow) { example_command.__send__(:flow) }
-
     before do
-      allow(flow).to receive(:trigger)
+      allow(example_command).to receive(:execute!)
       allow(example_command).to receive(:malfunction?).and_return(malfunction?)
     end
 
@@ -37,7 +35,7 @@ RSpec.describe Command::Command::Execute, type: :concern do
 
       it "triggers and handles" do
         execute
-        expect(flow).to have_received(:trigger)
+        expect(example_command).to have_received(:execute!)
         expect(example_command).to have_received(expected_handler)
       end
     end
@@ -50,6 +48,8 @@ RSpec.describe Command::Command::Execute, type: :concern do
       let(:example_command_class) { test_class }
       let(:callback) { :execute }
       let(:method) { :on_execute }
+
+      before { allow(instance).to receive(:execute!) }
     end
 
     context "without malfunction?" do

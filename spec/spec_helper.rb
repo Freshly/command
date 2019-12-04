@@ -18,6 +18,7 @@ end
 require "command"
 
 require_relative "support/shared_context/with_an_example_command"
+require_relative "support/shared_context/with_an_example_command_having_batch"
 require_relative "support/shared_context/with_an_example_command_having_flow"
 
 RSpec.configure do |config|
