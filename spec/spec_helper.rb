@@ -7,8 +7,10 @@ require "simplecov"
 require "timecop"
 require "shoulda-matchers"
 
-require "spicerack/spec_helper"
+require "spicery/spec_helper"
+require "batch_processor/spec_helper"
 require "flow/spec_helper"
+require "malfunction/spec_helper"
 
 SimpleCov.start do
   add_filter "/spec/"
