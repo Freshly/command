@@ -22,13 +22,39 @@ RSpec.describe Command::Command::Execute, type: :concern do
     end
   end
 
+  describe ".executable_class" do
+    subject { example_command_class.executable_class }
+
+    context "when explicit" do
+      let(:explicit_class) { Class.new(Flow::FlowBase) }
+
+      before { example_command_class.__send__(:executes, explicit_class) }
+
+      it { is_expected.to eq explicit_class }
+    end
+
+    context "when implied" do
+      let(:implicit_class) { Class.new(Flow::FlowBase) }
+
+      before { allow(example_command_class).to receive(:implicit_executable_class).and_return(implicit_class) }
+
+      it { is_expected.to eq implicit_class }
+    end
+  end
+
+  describe ".inherited" do
+    it "needs specs"
+  end
+
+  describe ".executes" do
+    it "needs specs"
+  end
+
   describe "#execute" do
     subject(:execute) { example_command.execute }
 
-    let(:flow) { example_command.__send__(:flow) }
-
     before do
-      allow(flow).to receive(:trigger)
+      allow(example_command).to receive(:execute!)
       allow(example_command).to receive(:malfunction?).and_return(malfunction?)
     end
 
@@ -37,7 +63,7 @@ RSpec.describe Command::Command::Execute, type: :concern do
 
       it "triggers and handles" do
         execute
-        expect(flow).to have_received(:trigger)
+        expect(example_command).to have_received(:execute!)
         expect(example_command).to have_received(expected_handler)
       end
     end
@@ -50,6 +76,8 @@ RSpec.describe Command::Command::Execute, type: :concern do
       let(:example_command_class) { test_class }
       let(:callback) { :execute }
       let(:method) { :on_execute }
+
+      before { allow(instance).to receive(:execute!) }
     end
 
     context "without malfunction?" do
@@ -165,5 +193,9 @@ RSpec.describe Command::Command::Execute, type: :concern do
         end
       end
     end
+  end
+
+  describe "#execute!" do
+    it "needs specs"
   end
 end

@@ -12,4 +12,12 @@ RSpec.describe Command do
   describe described_class::CommandUnresolvedError do
     it { is_expected.to inherit_from Command::Error }
   end
+
+  describe described_class::UnknownExecutableError do
+    it { is_expected.to inherit_from Command::Error }
+  end
+
+  describe described_class::UnregisteredExecutableError do
+    it { is_expected.to inherit_from Command::Error }
+  end
 end

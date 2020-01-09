@@ -5,6 +5,7 @@ require "active_support"
 require "spicery"
 
 require "flow"
+require "batch_processor"
 
 require "command/version"
 
@@ -15,4 +16,6 @@ module Command
   class Error < StandardError; end
 
   class CommandUnresolvedError < Error; end
+  class UnknownExecutableError < Error; end
+  class UnregisteredExecutableError < Error; end
 end
